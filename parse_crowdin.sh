@@ -40,6 +40,7 @@ for locale_dir in "$dir_path"/*; do
 
             localiAlias=$(get_alias $locale)
             if [ "$localiAlias" != "" ]; then
+                echo alias $localiAlias
                 mkdir -p "$target_dir/values-$localiAlias"
                 cp "$locale_dir/general/strings.xml" "$target_dir/values-$localiAlias/strings.xml"
             fi
