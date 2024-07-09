@@ -14,7 +14,7 @@ fi
 get_alias() {
   local number=$1
 
-  if [ "$number" == "pt-PT" ]; then
+  if [ "$number" == "pt-rPT" ]; then
     echo "pt"
   else
     echo ""
@@ -33,6 +33,7 @@ for locale_dir in "$dir_path"/*; do
 
     if [ -d "$locale_dir" ]; then
         locale=$(basename "$locale_dir") # Get the locale name from the directory name
+        locale="${locale/-/-r}"
 
         if [ -f "$locale_dir/general/strings.xml" ]; then
             mkdir -p "$target_dir/values-$locale"
