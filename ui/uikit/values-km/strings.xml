@@ -15,8 +15,8 @@
   limitations under the License.
   -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="next_page">Next page</string>
-    <string name="previous_page">Previous page</string>
-    <string name="first_page">First page</string>
-    <string name="last_page">Last page</string>
+    <string name="next_page">ទំ​ព​រ័​បន្ទាប់</string>
+    <string name="previous_page">ទំព័រមុន</string>
+    <string name="first_page">ទំព័រទីមួយ</string>
+    <string name="last_page">ទំព័រ​ចុងក្រោយ</string>
 </resources>
