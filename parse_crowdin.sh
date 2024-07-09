@@ -24,10 +24,12 @@ get_alias() {
         echo "in"
     elif [ "$number" == "he" ]; then
         echo "iw"
-    elif [ "$number" == "sv-SE" ]; then
+    elif [ "$number" == "sv-rSE" ]; then
         echo "sv"
     elif [ "$number" == "gu-rIN" ]; then
         echo "gu"
+    elif [ "$number" == "ml-rIN" ]; then
+        echo "ml"
     else
         echo ""
     fi
