@@ -18,6 +18,10 @@ get_alias() {
         echo "pt"
     elif [ "$number" == "es-rES" ]; then
         echo "es"
+    elif [ "$number" == "hy-rAM" ]; then
+        echo "hy"
+    elif [ "$number" == "id" ]; then
+        echo "in"
     else
         echo ""
     fi
