@@ -30,6 +30,14 @@ get_alias() {
         echo "gu"
     elif [ "$number" == "ml-rIN" ]; then
         echo "ml"
+    elif [ "$number" == "ne-rNP" ]; then
+        echo "ml"
+    elif [ "$number" == "ne-rNP" ]; then
+        echo "ml"
+    elif [ "$number" == "pa-rIN" ]; then
+        echo "pa"
+    elif [ "$number" == "si-rLK" ]; then
+        echo "si"
     else
         echo ""
     fi
