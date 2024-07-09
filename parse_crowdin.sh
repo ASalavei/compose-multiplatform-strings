@@ -26,6 +26,8 @@ get_alias() {
         echo "iw"
     elif [ "$number" == "sv-SE" ]; then
         echo "sv"
+    elif [ "$number" == "gu-rIN" ]; then
+        echo "gu"
     else
         echo ""
     fi
