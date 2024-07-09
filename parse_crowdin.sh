@@ -38,6 +38,8 @@ get_alias() {
         echo "pa"
     elif [ "$number" == "si-rLK" ]; then
         echo "si"
+    elif [ "$number" == "ur-rPK" ]; then
+        echo "ur"
     else
         echo ""
     fi
