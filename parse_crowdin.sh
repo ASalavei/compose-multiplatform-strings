@@ -11,6 +11,16 @@ if [ -z "$dir_path" ]; then
     exit 1
 fi
 
+get_alias() {
+  local number=$1
+
+  if [ "$number" == "pt-PT" ]; then
+    echo "pt"
+  else
+    echo ""
+  fi
+}
+
 rm -rf $target_dir
 mkdir -p $target_dir
 
@@ -20,15 +30,19 @@ cp "$dir_path/en/general/strings.xml" "$target_dir/values/strings.xml"
 for locale_dir in "$dir_path"/*; do
     # Check if it is a directory
     echo locale $locale_dir
+
     if [ -d "$locale_dir" ]; then
         locale=$(basename "$locale_dir") # Get the locale name from the directory name
-        
+
         if [ -f "$locale_dir/general/strings.xml" ]; then
-            # Make value-<locale> directory if it does not exist
             mkdir -p "$target_dir/values-$locale"
-            
-            # Move file to new location
             cp "$locale_dir/general/strings.xml" "$target_dir/values-$locale/strings.xml"
+
+            localiAlias=$(get_alias $locale)
+            if [ "$localiAlias" != "" ]; then
+                mkdir -p "$target_dir/values-$localiAlias"
+                cp "$locale_dir/general/strings.xml" "$target_dir/values-$localiAlias/strings.xml"
+            fi
         fi
     fi
 done
