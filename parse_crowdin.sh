@@ -22,6 +22,8 @@ get_alias() {
         echo "hy"
     elif [ "$number" == "id" ]; then
         echo "in"
+    elif [ "$number" == "he" ]; then
+        echo "iw"
     else
         echo ""
     fi
