@@ -12,13 +12,15 @@ if [ -z "$dir_path" ]; then
 fi
 
 get_alias() {
-  local number=$1
+    local number=$1
 
-  if [ "$number" == "pt-rPT" ]; then
-    echo "pt"
-  else
-    echo ""
-  fi
+    if [ "$number" == "pt-rPT" ]; then
+        echo "pt"
+    elif [ "$number" == "es-rES" ]; then
+        echo "es"
+    else
+        echo ""
+    fi
 }
 
 rm -rf $target_dir
