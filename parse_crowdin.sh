@@ -1,55 +1,58 @@
 #!/bin/bash
 
+#
+# Copyright 2024 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 # Directory to go through
-dir_path=$1
-target_dir='ui/uikit'
+crowding_res_path=$1
+target_dir='res'
 
 # Check if directory path is not empty
-if [ -z "$dir_path" ]; then
+if [ -z "$crowding_res_path" ]; then
     echo "Error: No source directory path provided."
     echo "Usage: $0 <directory path>"
     exit 1
 fi
 
-get_alias() {
-    local number=$1
-
-    if [ "$number" == "pt-rPT" ]; then
-        echo "pt"
-    elif [ "$number" == "es-rES" ]; then
-        echo "es"
-    elif [ "$number" == "hy-rAM" ]; then
-        echo "hy"
-    elif [ "$number" == "id" ]; then
-        echo "in"
-    elif [ "$number" == "he" ]; then
-        echo "iw"
-    elif [ "$number" == "sv-rSE" ]; then
-        echo "sv"
-    elif [ "$number" == "gu-rIN" ]; then
-        echo "gu"
-    elif [ "$number" == "ml-rIN" ]; then
-        echo "ml"
-    elif [ "$number" == "ne-rNP" ]; then
-        echo "ne"
-    elif [ "$number" == "pa-rIN" ]; then
-        echo "pa"
-    elif [ "$number" == "si-rLK" ]; then
-        echo "si"
-    elif [ "$number" == "ur-rPK" ]; then
-        echo "ur"
-    else
-        echo ""
-    fi
+alias_name() {
+    local name=$1
+    case "$name" in
+        "pt-rPT") echo "pt" ;;
+        "es-rES") echo "es" ;;
+        "hy-rAM") echo "hy" ;;
+        "id") echo "in" ;;
+        "he") echo "iw" ;;
+        "sv-rSE") echo "sv" ;;
+        "gu-rIN") echo "gu" ;;
+        "ml-rIN") echo "ml" ;;
+        "ne-rNP") echo "ne" ;;
+        "pa-rIN") echo "pa" ;;
+        "si-rLK") echo "si" ;;
+        "ur-rPK") echo "ur" ;;
+        *) echo "" ;;
+    esac
 }
 
 rm -rf $target_dir
 mkdir -p $target_dir
 
 mkdir -p "$target_dir/values"
-cp "$dir_path/en/general/strings.xml" "$target_dir/values/strings.xml"
+cp "$crowding_res_path/en/general/strings.xml" "$target_dir/values/strings.xml"
 
-for locale_dir in "$dir_path"/*; do
+for locale_dir in "$crowding_res_path"/*; do
     # Check if it is a directory
     echo locale $locale_dir
 
@@ -58,14 +61,13 @@ for locale_dir in "$dir_path"/*; do
         locale="${locale/-/-r}"
 
         if [ -f "$locale_dir/general/strings.xml" ]; then
-            mkdir -p "$target_dir/values-$locale"
-            cp "$locale_dir/general/strings.xml" "$target_dir/values-$locale/strings.xml"
-
-            localiAlias=$(get_alias $locale)
-            if [ "$localiAlias" != "" ]; then
-                echo alias $localiAlias
-                mkdir -p "$target_dir/values-$localiAlias"
-                cp "$locale_dir/general/strings.xml" "$target_dir/values-$localiAlias/strings.xml"
+            localAlias=$(alias_name $locale)
+            if [ "$localAlias" != "" ]; then
+                mkdir -p "$target_dir/values-$localAlias"
+                cp "$locale_dir/general/strings.xml" "$target_dir/values-$localAlias/strings.xml"
+            else
+                mkdir -p "$target_dir/values-$locale"
+                cp "$locale_dir/general/strings.xml" "$target_dir/values-$locale/strings.xml"
             fi
         fi
     fi
